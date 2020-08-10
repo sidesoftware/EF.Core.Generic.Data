@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>EF.Core.Generic.Data</id>
+        <title>EF.Core.Generic.Data</title>
+        <iconUrl></iconUrl>
+        <description>
+            A simple generic repository wrapper library for entity framework core
+        </description>
+        <summary>
+            Reusable generic unit of work and repository pattern for abstracting Entity Framework Core
+        </summary> 
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <authors>Jake Ashcraft</authors>
+        <copyright>Copyright © 2020 Side Software</copyright>
+        <licenseUrl>https://github.com/sidesoftware/EF.Core.Generic.Data/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://sidesoftware.github.io/EF.Core.Generic.Data/</projectUrl>
+        <tags>Unit of Work, Repository Pattern, Repository</tags>
+    </metadata>
+</package>

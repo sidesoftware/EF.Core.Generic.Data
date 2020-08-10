@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Company>Side Software</Company>
+      <Authors>Jake Ashcraft</Authors>
+      <Owners>sidesoftware.com</Owners>
+      <PackageProjectUrl></PackageProjectUrl>
+      <PackageIconUrl></PackageIconUrl>
+      <PackageTags>Unit of Work, Repository Pattern, Repository</PackageTags>
+      <Copyright>Copyright © 2020 Side Software</Copyright>
+      <Description>Easy to use, generic repository wrapper component for Entity Framework Core</Description>
+      <PackageLicenseUrl>https://github.com/sidesoftware/EF.Core.Generic.Data/blob/master/LICENSE</PackageLicenseUrl>
+      <NeutralLanguage>en</NeutralLanguage>
+      <RepositoryUrl></RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+      <PackageReleaseNotes></PackageReleaseNotes>
+      <Title>EF.Core.Generic.Data</Title>
+      <PackageVersion>2.0</PackageVersion>
+      <AssemblyName>EF.Core.Generic.Data</AssemblyName>
+      <RootNamespace>EF.Core.Generic.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.6" />
+     <PackageReference Include="Microsoft.EntityFrameworkCore.AutoHistory" Version="3.1.3" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
