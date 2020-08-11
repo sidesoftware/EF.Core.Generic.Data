@@ -40,7 +40,7 @@ public class Startup
         {
             // Use the EF.Core.Generic.Data Dependency Injection to set up the Unit of Work
             services.AddDbContext<SampleContext>(options => 
-            options.UseNpgsql(Configuration.GetConnectionString("NAME OF CONNECTION")))
+            options.UseSqlServer(Configuration.GetConnectionString("NAME OF CONNECTION")))
                 .AddUnitOfWork<SampleContext>();
 
             services.AddMvc();
