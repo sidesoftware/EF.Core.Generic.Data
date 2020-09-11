@@ -19,7 +19,7 @@
       <RepositoryType>git</RepositoryType>
       <PackageReleaseNotes></PackageReleaseNotes>
       <Title>EF.Core.Generic.Data</Title>
-      <PackageVersion>2.0</PackageVersion>
+      <PackageVersion>2.0.1</PackageVersion>
       <AssemblyName>EF.Core.Generic.Data</AssemblyName>
       <RootNamespace>EF.Core.Generic.Data</RootNamespace>
       <AssemblyVersion>1.0.0.1</AssemblyVersion>
