@@ -28,41 +28,42 @@ Once you have added the Nuget Package to your project, you can edit your `Startu
 
 ```c#
 public class Startup
+{
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        Configuration = configuration;
+    }
 
-        public IConfiguration Configuration { get; }
+    public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Use the EF.Core.Generic.Data Dependency Injection to set up the Unit of Work
-            services.AddDbContext<SampleContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("NAME OF CONNECTION")))
-                .AddUnitOfWork<SampleContext>();
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Use the EF.Core.Generic.Data Dependency Injection to set up the Unit of Work
+        services.AddDbContext<SampleContext>(options => 
+        options.UseSqlServer(Configuration.GetConnectionString("NAME OF CONNECTION")))
+            .AddUnitOfWork<SampleContext>();
 
-            services.AddMvc();
-        }
+        services.AddMvc();
+    }
+}
 ```
 ### Example
 Below is an example of a simple select. 
 
 ```c#
 
- public class PersonService : IService<Person>
+public class PersonService : IService<Person>
+{
+    private readonly IUnitOfWork _db;
+    public PersonService(IUnitOfWork db)
     {
-        private readonly IUnitOfWork _db;
-        public PersonService(IUnitOfWork db)
-        {
-            _db = db;
-        }
-        
-        public Person GetAddressint id)
-        {
-           return _db.Repository<Person>().Get(id);
-        }
+        _db = db;
     }
+        
+    public Person GetAddressint id)
+    {
+        return _db.Repository<Person>().Get(id);
+    }
+}
 
 ```

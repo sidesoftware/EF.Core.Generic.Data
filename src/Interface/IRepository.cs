@@ -58,6 +58,13 @@ namespace EF.Core.Generic.Data.Interface
 
         Task<T> GetAsync(int id);
 
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>,
+                IOrderedQueryable<T>> orderBy = null,
+            Func<IQueryable<T>,
+                IIncludableQueryable<T, object>> include = null,
+            bool enableTracking = true);
+
         #region Add Functions
 
         ValueTask<EntityEntry<T>> AddAsync(T entity,

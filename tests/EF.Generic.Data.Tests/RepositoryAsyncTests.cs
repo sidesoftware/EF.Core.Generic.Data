@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EF.Core.Generic.Data.Tests.TestFixtures;
 using Microsoft.EntityFrameworkCore;
@@ -66,6 +67,21 @@ namespace EF.Core.Generic.Data.Tests
             Assert.NotNull(testList);
             Assert.IsAssignableFrom<IEnumerable<TestProduct>>(testList.Items);
             Assert.Equal(20, testList.Items.Count);
+        }
+
+        [Fact]
+        public async Task ShouldGetListOf20TestProductsAsync()
+        {
+            // Arrange 
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+            var repo = uow.Repository<TestProduct>();
+
+            // Act
+            var testList = await repo.GetAllAsync();
+
+            //Assert
+            Assert.NotNull(testList);
+            Assert.Equal(20, testList.Count());
         }
 
         [Fact]

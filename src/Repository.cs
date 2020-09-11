@@ -48,8 +48,10 @@ namespace EF.Core.Generic.Data
             return DbContext.Find<T>(id);
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>,
-                IOrderedQueryable<T>> orderBy = null, Func<IQueryable<T>,
+        public IQueryable<T> GetAll(Expression<Func<T, bool>> predicate = null, 
+            Func<IQueryable<T>,
+                IOrderedQueryable<T>> orderBy = null, 
+            Func<IQueryable<T>,
                 IIncludableQueryable<T, object>> include = null,
             bool enableTracking = true)
         {
@@ -230,6 +232,23 @@ namespace EF.Core.Generic.Data
             return orderBy != null
                 ? orderBy(query).Select(selector).ToPaginateAsync(index, size, 0, cancellationToken)
                 : query.Select(selector).ToPaginateAsync(index, size, 0, cancellationToken);
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
+            Func<IQueryable<T>,
+                IOrderedQueryable<T>> orderBy = null,
+            Func<IQueryable<T>,
+                IIncludableQueryable<T, object>> include = null,
+            bool enableTracking = true)
+        {
+            IQueryable<T> query = DbSet;
+            if (!enableTracking) query = query.AsNoTracking();
+
+            if (include != null) query = include(query);
+
+            if (predicate != null) query = query.Where(predicate);
+
+            return orderBy != null ? await orderBy(query).ToListAsync() : await query.ToListAsync();
         }
 
         #endregion

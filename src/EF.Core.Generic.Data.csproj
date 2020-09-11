@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Company>Side Software</Company>
       <Authors>Jake Ashcraft</Authors>
@@ -22,6 +22,8 @@
       <PackageVersion>2.0</PackageVersion>
       <AssemblyName>EF.Core.Generic.Data</AssemblyName>
       <RootNamespace>EF.Core.Generic.Data</RootNamespace>
+      <AssemblyVersion>1.0.0.1</AssemblyVersion>
+      <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
