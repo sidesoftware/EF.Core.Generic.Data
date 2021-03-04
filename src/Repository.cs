@@ -97,6 +97,11 @@ namespace EF.Core.Generic.Data
                 : query.Select(selector).ToPaginate(index, size);
         }
 
+        public IQueryable<T> GetSql(string sql, params object[] parameters)
+        {
+            return DbSet.FromSqlRaw(sql);
+        }
+
         #endregion
 
         #region Remove Functions

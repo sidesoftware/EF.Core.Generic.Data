@@ -20,6 +20,8 @@ namespace EF.Core.Generic.Data.Interface
 
         T Get(int id);
 
+        IQueryable<T> GetSql(string sql, params object[] parameters);
+
         IQueryable<T> GetAll(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
@@ -57,6 +59,8 @@ namespace EF.Core.Generic.Data.Interface
             CancellationToken cancellationToken = default);
 
         Task<T> GetAsync(int id);
+
+        
 
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null,
             Func<IQueryable<T>,
