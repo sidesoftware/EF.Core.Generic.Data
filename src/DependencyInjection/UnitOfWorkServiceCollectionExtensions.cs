@@ -6,7 +6,7 @@ namespace EF.Core.Generic.Data.DependencyInjection
 {
     public static class UnitOfWorkServiceCollectionExtensions
     {
-        public static IServiceCollection AddUnitOfWork<TContext>(this IServiceCollection services, ServiceType serviceType = ServiceType.Singleton)
+        public static IServiceCollection AddUnitOfWork<TContext>(this IServiceCollection services, ServiceType serviceType = ServiceType.Scoped)
             where TContext : DbContext
         {
             if (serviceType == ServiceType.Singleton)
@@ -25,7 +25,7 @@ namespace EF.Core.Generic.Data.DependencyInjection
             return services;
         }
 
-        public static IServiceCollection AddUnitOfWork<TContext1, TContext2>(this IServiceCollection services, ServiceType serviceType = ServiceType.Singleton)
+        public static IServiceCollection AddUnitOfWork<TContext1, TContext2>(this IServiceCollection services, ServiceType serviceType = ServiceType.Scoped)
             where TContext1 : DbContext
             where TContext2 : DbContext
         {
@@ -44,7 +44,7 @@ namespace EF.Core.Generic.Data.DependencyInjection
         }
 
         public static IServiceCollection AddUnitOfWork<TContext1, TContext2, TContext3>(
-            this IServiceCollection services, ServiceType serviceType = ServiceType.Singleton)
+            this IServiceCollection services, ServiceType serviceType = ServiceType.Scoped)
             where TContext1 : DbContext
             where TContext2 : DbContext
             where TContext3 : DbContext
@@ -66,7 +66,7 @@ namespace EF.Core.Generic.Data.DependencyInjection
         }
 
         public static IServiceCollection AddUnitOfWork<TContext1, TContext2, TContext3, TContext4>(
-            this IServiceCollection services, ServiceType serviceType = ServiceType.Singleton)
+            this IServiceCollection services, ServiceType serviceType = ServiceType.Scoped)
             where TContext1 : DbContext
             where TContext2 : DbContext
             where TContext3 : DbContext

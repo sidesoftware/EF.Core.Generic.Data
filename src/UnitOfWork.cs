@@ -57,6 +57,11 @@ namespace EF.Core.Generic.Data
             return await Context.SaveChangesAsync();
         }
 
+        public string GetDbConnection()
+        {
+            return Context.Database.GetDbConnection().ConnectionString;
+        }
+
         /// <summary>
         /// Releases the allocated resources for this context
         /// </summary>

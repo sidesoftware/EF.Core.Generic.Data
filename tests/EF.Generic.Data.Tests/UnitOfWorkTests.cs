@@ -43,5 +43,13 @@ namespace EF.Core.Generic.Data.Tests
             Assert.NotNull(repo2);
             Assert.IsAssignableFrom<IRepository<TestProduct>>(repo2);
         }
+
+        [Fact]
+        public void GetDbConnection()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_testFixture.Context);
+            var connection = uow.GetDbConnection();
+            Assert.NotNull(connection);
+        }
     }
 }

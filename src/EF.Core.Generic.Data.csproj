@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Company>Side Software</Company>
       <Authors>Jake Ashcraft</Authors>
@@ -17,13 +17,13 @@
       <NeutralLanguage>en</NeutralLanguage>
       <RepositoryUrl></RepositoryUrl>
       <RepositoryType>git</RepositoryType>
-      <PackageReleaseNotes></PackageReleaseNotes>
+      <PackageReleaseNotes>Add ability to get the current db connection string.</PackageReleaseNotes>
       <Title>EF.Core.Generic.Data</Title>
       <PackageVersion>2.0.1</PackageVersion>
       <AssemblyName>EF.Core.Generic.Data</AssemblyName>
       <RootNamespace>EF.Core.Generic.Data</RootNamespace>
-      <AssemblyVersion>1.0.0.1</AssemblyVersion>
-      <FileVersion>1.0.0.1</FileVersion>
+      <AssemblyVersion>1.0.0.2</AssemblyVersion>
+      <FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
