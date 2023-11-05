@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using EF.Core.Generic.Data.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -34,32 +35,37 @@ namespace EF.Core.Generic.Data
 
         public TContext Context { get; }
 
-        /// <summary>
-        /// Commit the changes to the db
-        /// </summary>
-        /// <param name="autoHistory">Ensures the automatic history</param>
-        /// <returns>The number of state entries written to the database</returns>
+        /// <inheritdoc/>
         public int Commit(bool autoHistory = false)
         {
             if (autoHistory) Context.EnsureAutoHistory();
             return Context.SaveChanges();
         }
 
-        /// <summary>
-        /// Commit the changes to the db
-        /// </summary>
-        /// <param name="autoHistory">Ensures the automatic history</param>
-        /// <returns>The number of state entries written to the database</returns>
-        public async Task<int> CommitAsync(bool autoHistory = false)
+        /// <inheritdoc/>
+        public async Task<int> CommitAsync(bool autoHistory = false, CancellationToken cancellationToken = default)
         {
             if (autoHistory) Context.EnsureAutoHistory();
 
-            return await Context.SaveChangesAsync();
+            return await Context.SaveChangesAsync(cancellationToken);
         }
 
+        /// <inheritdoc/>
         public string GetDbConnection()
         {
             return Context.Database.GetDbConnection().ConnectionString;
+        }
+
+        /// <inheritdoc/>
+        public bool CanConnect()
+        {
+            return Context.Database.CanConnect();
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> CanConnectAsync(CancellationToken cancellationToken = default)
+        {
+            return await Context.Database.CanConnectAsync(cancellationToken);
         }
 
         /// <summary>

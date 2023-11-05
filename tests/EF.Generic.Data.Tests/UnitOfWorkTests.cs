@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using EF.Core.Generic.Data.Interface;
 using EF.Core.Generic.Data.Tests.TestFixtures;
 using TestDatabase;
@@ -50,6 +51,22 @@ namespace EF.Core.Generic.Data.Tests
             using var uow = new UnitOfWork<TestDbContext>(_testFixture.Context);
             var connection = uow.GetDbConnection();
             Assert.NotNull(connection);
+        }
+
+        [Fact]
+        public void CanConnect()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_testFixture.Context);
+            var connection = uow.CanConnect();
+            Assert.True(connection);
+        }
+
+        [Fact]
+        public async Task CanConnectAsync()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_testFixture.Context);
+            var connection = await uow.CanConnectAsync();
+            Assert.True(connection);
         }
     }
 }

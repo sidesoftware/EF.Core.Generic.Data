@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using EF.Core.Generic.Data.Interface;
 using EF.Core.Generic.Data.Tests.TestFixtures;
 using TestDatabase;
@@ -74,6 +75,28 @@ namespace EF.Core.Generic.Data.Tests
             var product = repo.SingleOrDefault(x => x.Id == 10001);
 
             Assert.Null(product);
+        }
+
+        [Fact]
+        public void ShouldReturnTwenty()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+            var repo = uow.Repository<TestProduct>();
+
+            var count = repo.Count();
+
+            Assert.Equal(20, count);
+        }
+
+        [Fact]
+        public void ShouldGetName()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+            var repo = uow.Repository<TestProduct>();
+
+            var name = repo.GetField(x => x.Id == 3, s => s.Name);
+
+            Assert.Equal("Name3", name);
         }
     }
 }

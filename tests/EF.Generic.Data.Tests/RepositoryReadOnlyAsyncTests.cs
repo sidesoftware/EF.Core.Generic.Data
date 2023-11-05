@@ -28,7 +28,7 @@ namespace EF.Core.Generic.Data.Tests
             using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
             var repo = uow.Repository<TestProduct>();
 
-            var results = await repo.GetListAsync(t => t.InStock == true && t.CategoryId == 1,
+            var results = await repo.GetListAsync(predicate: t => t.InStock == true && t.CategoryId == 1,
                 size: 5);
 
             Assert.Equal(5, results.Items.Count);
@@ -64,6 +64,17 @@ namespace EF.Core.Generic.Data.Tests
             var product = await repo.SingleOrDefaultAsync(x => x.Id == 10001);
 
             Assert.Null(product);
+        }
+
+        [Fact]
+        public async Task ShouldReturnTwenty()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+            var repo = uow.Repository<TestProduct>();
+
+            var count = await repo.CountAsync();
+
+            Assert.Equal(20, count);
         }
     }
 }

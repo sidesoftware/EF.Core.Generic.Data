@@ -107,5 +107,16 @@ namespace EF.Core.Generic.Data.Tests
             Assert.NotNull(product);
             Assert.IsAssignableFrom<TestProduct>(product);
         }
+
+        [Fact]
+        public async Task ShouldGetName()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+            var repo = uow.Repository<TestProduct>();
+
+            var name = await repo.GetFieldAsync(x => x.Id == 3, s => s.Name);
+
+            Assert.Equal("Name3", name);
+        }
     }
 }

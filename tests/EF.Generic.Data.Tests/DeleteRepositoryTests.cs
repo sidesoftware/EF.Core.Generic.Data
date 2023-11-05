@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using EF.Core.Generic.Data.Tests.TestFixtures;
 using TestDatabase;
 using Xunit;
@@ -30,10 +31,41 @@ namespace EF.Core.Generic.Data.Tests
             prod = repo.SingleOrDefault(x => x.Id == 1);
             Assert.Null(prod);
         }
-        
+
+        [Fact]
+        public void ShouldExecuteDeleteProduct()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+
+            var repo = uow.Repository<TestProduct>();
+
+            uow.Commit();
+
+            repo.ExecuteDelete(x => x.Id == 1);
+
+            var prod = repo.SingleOrDefault(x => x.Id == 1);
+            Assert.Null(prod);
+        }
+
+        [Fact]
+        public async Task ShouldExecuteDeleteAsyncProduct()
+        {
+            using var uow = new UnitOfWork<TestDbContext>(_fixture.Context);
+
+            var repo = uow.Repository<TestProduct>();
+
+            await uow.CommitAsync();
+
+            await repo.ExecuteDeleteAsync(x => x.Id == 1);
+
+            var prod = await repo.SingleOrDefaultAsync(x => x.Id == 1);
+            Assert.Null(prod);
+        }
+
         public void Dispose()
         {
             _fixture?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }
